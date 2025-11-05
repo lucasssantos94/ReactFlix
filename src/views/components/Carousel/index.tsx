@@ -18,7 +18,7 @@ export const Carousel = <T,>({
   data,
   renderItem,
   loop = true,
-  itemClass = 'basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/7',
+  itemClass = 'basis-1/2 md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6',
   keyExtractor,
 }: IGenericCarouselProps<T>) => {
   return (
