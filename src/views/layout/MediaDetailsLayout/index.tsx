@@ -38,7 +38,7 @@ export const MediaDetailsLayout = ({ media }: IMediaDetailsLayoutProps) => {
   return (
     <>
       <title>{title}</title>
-      <article className='min-h-screen bg-background text-foreground transition-colors duration-300'>
+      <div className='min-h-screen bg-background text-foreground transition-colors duration-300'>
         <HeroBanner>
           <InfoBanner />
         </HeroBanner>
@@ -46,7 +46,7 @@ export const MediaDetailsLayout = ({ media }: IMediaDetailsLayoutProps) => {
           <SectionInfo />
           <SideBar />
         </main>
-      </article>
+      </div>
     </>
   )
 }

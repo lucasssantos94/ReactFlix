@@ -156,11 +156,11 @@ const Banner = ({ data = [] }: BannerProps) => {
       {isHovered && (
         <>
           <CarouselPrevious
-            className='absolute left-4 top-1/2 -translate-y-1/2 z-10'
+            className='absolute left-4 top-1/2 -translate-y-1/2 z-10 md:w-14 md:h-14 cursor-pointer'
             variant='secondary'
           />
           <CarouselNext
-            className='absolute right-4 top-1/2 -translate-y-1/2 z-10'
+            className='absolute right-4 top-1/2 -translate-y-1/2 z-10 md:w-14 md:h-14 cursor-pointer'
             variant='secondary'
           />
         </>

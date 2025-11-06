@@ -1,5 +1,6 @@
 import { useMediaInfo } from '@app/hooks/media/useMediaDetails'
-
+import { ArrowRight } from 'lucide-react'
+import { Link } from 'react-router'
 import { Carousel } from '@/views/components/Carousel'
 import { LoadingSpinner } from '@/views/components/LoadingSpinner'
 import { PersonCard } from '@/views/components/PersonCard'
@@ -10,7 +11,7 @@ export const SectionInfo = () => {
 
   if (!mediaInfo) return <LoadingSpinner />
 
-  const { cast, reviews, recommendations, title } = mediaInfo
+  const { cast, reviews, recommendations, title, id, type } = mediaInfo
 
   return (
     <section className='md:pr-14 md:border-r-4 border-border pt-4 px-2'>
@@ -19,10 +20,35 @@ export const SectionInfo = () => {
         <div className=''>
           <h2 className='text-3xl font-bold md:mb-4'>Elenco principal</h2>
           <Carousel
+            loop={false}
             data={cast.slice(0, 9)}
             keyExtractor={item => item.id}
+            carouselItem={
+              <Link
+                to={
+                  type === 'movie' ? `/movies/${id}/cast` : `/series/${id}/cast`
+                }
+                className='flex items-center w-60 ml-3 p-2'
+              >
+                <span className='text-md font-bold text-[#ccc]'>Ver todos</span>
+                <ArrowRight className='text-[#ccc]' />
+              </Link>
+            }
             renderItem={item => <PersonCard member={item} />}
           />
+
+          <div className='border-b-2 py-4'>
+            <Link
+              to={
+                type === 'movie' ? `/movies/${id}/cast` : `/series/${id}/cast`
+              }
+              className='flex items-center '
+            >
+              <h4 className='font-semibold text-lg'>
+                Elenco e equipe técnica completos
+              </h4>
+            </Link>
+          </div>
         </div>
       ) : (
         <p className='text-muted-foreground'>Sem elenco listado.</p>

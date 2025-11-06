@@ -25,7 +25,7 @@ export const SideBar = () => {
   } = infoMedia
 
   return (
-    <aside className='flex flex-col gap-5'>
+    <aside className='flex flex-col gap-5 pr-4'>
       <div className='p-5 rounded-lg border border-border flex items-center'>
         <ExternalIds
           externalIds={
