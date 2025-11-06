@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Clapperboard, Film, House, Menu, Users, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { NavLink, useLocation } from 'react-router'
+import { useIsMobile } from '@/app/hooks/useIsMobile'
 import { useModalSearchStore } from '@/app/stores/useModalSearchStore'
 import { Logo } from '../Logo'
 import { SearchBtn } from '../SearchBtn'
@@ -13,6 +14,7 @@ export const Header = () => {
   const menuRef = useRef<HTMLDivElement>(null)
   const location = useLocation()
   const { isOpen } = useModalSearchStore()
+  const isMobile = useIsMobile()
 
   const links = [
     { name: 'Home', href: '/', icon: <House /> },
@@ -45,7 +47,6 @@ export const Header = () => {
     }
   }, [menuIsOpen])
 
-  // Bloqueia scroll do body quando menu está aberto
   useEffect(() => {
     document.body.style.overflow = menuIsOpen ? 'hidden' : ''
     return () => {
@@ -61,7 +62,7 @@ export const Header = () => {
     <header className='p-4 sticky top-0 border-b  z-50 bg-background '>
       <div className=' flex items-center justify-between '>
         {/* Logo */}
-        <Logo size='xl' />
+        <Logo size={isMobile ? 'md' : 'xl'} />
 
         {/* Navegação Desktop */}
         <nav className='hidden lg:flex gap-4'>
@@ -107,7 +108,6 @@ export const Header = () => {
         <AnimatePresence>
           {menuIsOpen && (
             <>
-              {/* Fundo escurecido */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.5 }}
@@ -124,7 +124,6 @@ export const Header = () => {
                 transition={{ type: 'spring', stiffness: 240, damping: 25 }}
                 className='fixed top-0 right-0 h-full w-64 bg-background border-l border-slate-200 dark:border-slate-700 shadow-2xl flex flex-col gap-6 p-6 z-50 lg:hidden'
               >
-                {/* Cabeçalho do menu */}
                 <div className='flex justify-between items-center border-b border-slate-300 dark:border-slate-700 pb-4'>
                   <h3 className='font-semibold text-2xl text-red-500'>MENU</h3>
 
@@ -141,7 +140,6 @@ export const Header = () => {
                   </div>
                 </div>
 
-                {/* Links */}
                 <nav className='flex flex-col gap-6 mt-4'>
                   {links.map(link => (
                     <NavLink
@@ -158,11 +156,6 @@ export const Header = () => {
                     </NavLink>
                   ))}
                 </nav>
-
-                {/* Busca */}
-                {/* <div className="mt-auto border-t border-slate-300 dark:border-slate-700 pt-4 flex">
-                  <SearchBtn />
-                </div> */}
               </motion.aside>
             </>
           )}

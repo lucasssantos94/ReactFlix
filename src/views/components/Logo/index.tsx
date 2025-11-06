@@ -13,7 +13,9 @@ export const Logo = ({ size = 'md' }: LogoProps) => {
   }
   return (
     <Link to='/'>
-      <h3 className={`text-red-500 font-bold -tracking-wider ${sizeMap[size]}`}>
+      <h3
+        className={`text-red-500 font-bold -tracking-widest ${sizeMap[size]}`}
+      >
         REACTFLIX
       </h3>
     </Link>
