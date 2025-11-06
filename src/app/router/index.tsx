@@ -52,7 +52,7 @@ export const router = createBrowserRouter([
         element: <PersonDetails />,
       },
       {
-        path: '/search',
+        path: '/search/:search',
         element: <Search />,
       },
     ],
