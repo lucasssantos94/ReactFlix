@@ -103,7 +103,7 @@ const Banner = ({ data = [] }: BannerProps) => {
               <div className='absolute inset-0 bg-linear-to-r from-black/80 via-black/50 to-transparent' />
               <div className='absolute inset-0 bg-linear-to-t from-black via-transparent to-transparent' />
 
-              <div className='absolute top-1/5 left-0 p-8 text-white max-w-2xl'>
+              <div className='absolute top-1/5 left-0 p-4 md:p-8 text-white max-w-2xl'>
                 <h2 className='text-4xl md:text-6xl font-bold mb-4 overflow-hidden whitespace-nowrap text-ellipsis'>
                   {movie.title}
                 </h2>
@@ -119,12 +119,12 @@ const Banner = ({ data = [] }: BannerProps) => {
                       ? new Date(movie.release_date).getFullYear()
                       : 'TBA'}
                   </span>
-                  <span className='px-2 py-1 border border-gray-300 text-xs rounded'>
+                  <span className='px-2 py-1 border border-gray-300 text-xs rounded '>
                     {movie.adult ? '18+' : '12+'}
                   </span>
                 </div>
 
-                <p className='text-gray-200 leading-relaxed mb-6 line-clamp-3'>
+                <p className='text-gray-200 leading-relaxed mb-6 line-clamp-3 max-w-[300px] md:max-w-none'>
                   {movie.overview || 'Descrição não disponível.'}
                 </p>
 
@@ -153,8 +153,6 @@ const Banner = ({ data = [] }: BannerProps) => {
           </CarouselItem>
         ))}
       </CarouselContent>
-
-      {/* Controles de navegação */}
       {isHovered && (
         <>
           <CarouselPrevious

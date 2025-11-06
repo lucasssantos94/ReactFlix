@@ -1,8 +1,10 @@
-import Banner from '@/views/components/Banner'
+import { lazy } from 'react'
 import { Carousel } from '@/views/components/Carousel'
 import { LoadingSpinner } from '@/views/components/LoadingSpinner'
 import { MediaCard } from '@/views/components/MediaCard'
 import { useHome } from './useHome'
+
+const Banner = lazy(() => import('@/views/components/Banner'))
 
 const Home = () => {
   const { topRanted, trendingWeekMovies, isLoading, isError } = useHome()
