@@ -91,7 +91,8 @@ export const Header = () => {
 
           {/* Mobile */}
           <div className='flex lg:hidden items-center gap-2'>
-            <ThemeSwitcher />
+            <SearchBtn />
+
             <Button
               variant='ghost'
               onClick={() => setMenuIsOpen(!menuIsOpen)}
@@ -126,18 +127,22 @@ export const Header = () => {
                 {/* Cabeçalho do menu */}
                 <div className='flex justify-between items-center border-b border-slate-300 dark:border-slate-700 pb-4'>
                   <h3 className='font-semibold text-2xl text-red-500'>MENU</h3>
-                  <Button
-                    variant='ghost'
-                    size='icon'
-                    onClick={() => setMenuIsOpen(false)}
-                  >
-                    <X />
-                  </Button>
+
+                  <div className='space-x-2'>
+                    <ThemeSwitcher />
+                    <Button
+                      variant='ghost'
+                      size='icon'
+                      className='border'
+                      onClick={() => setMenuIsOpen(false)}
+                    >
+                      <X />
+                    </Button>
+                  </div>
                 </div>
 
                 {/* Links */}
                 <nav className='flex flex-col gap-6 mt-4'>
-                  <SearchBtn />
                   {links.map(link => (
                     <NavLink
                       key={link.name}

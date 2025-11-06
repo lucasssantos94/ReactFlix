@@ -13,7 +13,7 @@ export const SearchBtn = () => {
       className='border cursor-pointer'
     >
       <Search />
-      {isMobile ? 'Pesquisar' : 'ctrl + k'}
+      {!isMobile && <span>ctrl + k</span>}
     </Button>
   )
 }
