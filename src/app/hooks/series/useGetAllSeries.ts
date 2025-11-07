@@ -14,7 +14,7 @@ export const useGetAllSeries = (selectedGenreId?: string) => {
       },
     })
 
-  const series = data?.pages.flatMap(page => page.results)
+  const series = data?.pages.flatMap(page => page.results) || []
 
   return {
     series,

@@ -6,19 +6,19 @@ import type { ISeriesDetails } from '@/app/types/SerieDetails'
 import { MediaImage } from '../MediaImage'
 import { Button } from '../ui/button'
 
-type MediaType = IMovieDetails | ISeriesDetails
+export type MediaType = IMovieDetails | ISeriesDetails
 
-interface MediaCardProps {
-  media: MediaType
+interface IMediaCardProps<T extends MediaType> {
+  media: T
   scale?: boolean
   size?: 'default' | 'compact'
 }
 
-export const MediaCard = ({
+export const MediaCard = <T extends MediaType>({
   media,
   scale = true,
   size = 'default',
-}: MediaCardProps) => {
+}: IMediaCardProps<T>) => {
   const [isActive, setIsActive] = useState(false)
 
   const isMovie = 'title' in media

@@ -65,6 +65,7 @@ export const MediaImage = ({
           `}
           onLoad={handleLoad}
           onError={handleError}
+          loading='lazy'
         />
       )}
     </div>

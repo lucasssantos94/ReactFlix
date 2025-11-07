@@ -20,7 +20,7 @@ export const useGetAllMovies = (selectedGenreId?: string) => {
     },
   })
 
-  const movies = data?.pages.flatMap(page => page.results)
+  const movies = data?.pages.flatMap(page => page.results) || []
 
   return {
     movies,
