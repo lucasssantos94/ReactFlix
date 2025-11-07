@@ -1,16 +1,25 @@
 import { DialogDescription, DialogTitle } from '@radix-ui/react-dialog'
 import { Search, TrendingUp } from 'lucide-react'
-import { useEffect } from 'react'
-import { Link, useLocation } from 'react-router'
+import { useEffect, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router'
 import { useGetTrendingWeekMovies } from '@/app/hooks/movies/useGetTrendingWeekMovies'
 import { useModalSearchStore } from '@/app/stores/useModalSearchStore'
+import { Button } from '../ui/button'
 import { Dialog, DialogContent } from '../ui/dialog'
 import { Input } from '../ui/input'
 
 export const SearchModal = () => {
+  const [search, setSearch] = useState('')
+
   const location = useLocation()
   const { isOpen, closeModal } = useModalSearchStore()
   const { trendingWeekMovies, isLoading, isError } = useGetTrendingWeekMovies()
+  const navigate = useNavigate()
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    navigate(`/search/${search}`)
+  }
 
   useEffect(() => {
     closeModal()
@@ -27,8 +36,15 @@ export const SearchModal = () => {
         <DialogDescription className='sr-only'>
           Pesquise por filmes, series ou pessoas
         </DialogDescription>
-        <form className='mt-8'>
-          <Input placeholder='Pesquise por filmes, series ou pessoas' />
+        <form onSubmit={handleSubmit} className='mt-8 flex items-center gap-2'>
+          <Input
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder='Pesquise por filmes, series ou pessoas'
+          />
+          <Button type='submit' className='cursor-pointer'>
+            Buscar
+          </Button>
         </form>
         <div>
           <h4 className='flex items-center gap-2 text-lg border-b-2 py-2'>

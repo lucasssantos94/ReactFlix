@@ -59,7 +59,7 @@ export const Header = () => {
   }, [isOpen])
 
   return (
-    <header className='p-4 sticky top-0 border-b  z-50 bg-background '>
+    <header className='p-4 sticky top-0 border-b border-gray-800  z-50 bg-background '>
       <div className=' flex items-center justify-between '>
         {/* Logo */}
         <Logo size={isMobile ? 'md' : 'xl'} />

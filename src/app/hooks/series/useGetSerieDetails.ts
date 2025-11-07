@@ -10,7 +10,7 @@ export const useGetSeriesDetails = (serieId: string) => {
       queryFn: () => getSerieDetails(serieId),
       enabled: !!serieId,
     })
-  console.log(data)
+
   return {
     serieDetails: data,
     isLoading,

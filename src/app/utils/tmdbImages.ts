@@ -1,5 +1,6 @@
 export const TMDB_IMAGE_SIZES = {
   CARD_HORIZONTAL: 'w250_and_h141_face',
+  CARD_SMALL: 'w94_and_h141_bestv2',
   CARD_VERTICAL: 'w185_and_h278_face',
   POSTER_SMALL: 'w300_and_h450_bestv2',
   PROFILE_SMALL: 'w45_and_h67_face',

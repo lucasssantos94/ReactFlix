@@ -8,6 +8,7 @@ import { Suspense, useEffect } from 'react'
 import { Outlet } from 'react-router'
 import { QueryProvider } from './app/contexts/QueryProvider'
 import { useCtrlKShortcut } from './app/stores/useModalSearchStore'
+import { Footer } from './views/components/Footer'
 import { SearchModal } from './views/components/SearchModal/'
 
 const App = () => {
@@ -23,15 +24,13 @@ const App = () => {
       <ThemeProvider>
         <div className='flex flex-col min-h-screen'>
           <Header />
-          <main className='flex-1'>
+          <main className='flex-1 pb-10'>
             <ScrollToTop />
             <Suspense fallback={<LoadingSpinner />}>
               <Outlet />
             </Suspense>
           </main>
-          <footer className='flex items-center justify-center p-6'>
-            <h3>@2023 reactflix</h3>
-          </footer>
+          <Footer />
           <TrailerModal />
           <SearchModal />
         </div>

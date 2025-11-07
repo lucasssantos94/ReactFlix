@@ -4,7 +4,7 @@ import { getAllMovies } from '@/app/services/movies/getAllMovies'
 export const useGetAllMovies = () => {
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery({
-      queryKey: ['all-movies'],
+      queryKey: ['movies'],
       initialPageParam: 1,
       queryFn: ({ pageParam }) => getAllMovies(pageParam),
       getNextPageParam: (lastPage, allPages, lastPageParam) => {

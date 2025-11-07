@@ -16,6 +16,9 @@ const People = lazy(() => import('@/views/pages/People'))
 const PersonDetails = lazy(() => import('@/views/pages/PersonDetails'))
 
 const Search = lazy(() => import('@/views/pages/Search'))
+const MovieSearch = lazy(() => import('@/views/pages/Search/MovieSearch'))
+const SerieSearch = lazy(() => import('@/views/pages/Search/SerieSearch'))
+const PeopleSearch = lazy(() => import('@/views/pages/Search/PeopleSearch'))
 
 export const router = createBrowserRouter([
   {
@@ -52,8 +55,26 @@ export const router = createBrowserRouter([
         element: <PersonDetails />,
       },
       {
-        path: '/search/:search',
+        path: '/search/:search/',
         element: <Search />,
+        children: [
+          {
+            index: true,
+            element: <MovieSearch />,
+          },
+          {
+            path: '/search/:search/movies',
+            element: <MovieSearch />,
+          },
+          {
+            path: '/search/:search/series',
+            element: <SerieSearch />,
+          },
+          {
+            path: '/search/:search/people',
+            element: <PeopleSearch />,
+          },
+        ],
       },
     ],
   },

@@ -71,7 +71,7 @@ export const MediaCard = ({
 
         <MediaImage
           src={media.poster_path}
-          alt={mediaTitle || 'Capa do mídia'}
+          alt={mediaTitle || 'Capa da mídia'}
           size={isActive ? 'W780' : 'W500'}
           className={`
             transition-all duration-500
