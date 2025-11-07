@@ -34,7 +34,7 @@ const Home = () => {
           <Carousel
             data={topRanted ?? []}
             keyExtractor={item => item.id}
-            renderItem={item => <MediaCard media={item} />}
+            renderItem={item => <MediaCard media={item} scale={false} />}
           />
         </section>
 
@@ -46,7 +46,7 @@ const Home = () => {
           <Carousel
             data={popularSeries ?? []}
             keyExtractor={item => item.id}
-            renderItem={item => <MediaCard media={item} />}
+            renderItem={item => <MediaCard media={item} scale={false} />}
           />
         </section>
       </div>
