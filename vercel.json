@@ -11,11 +11,19 @@
   ],
   "routes": [
     {
+      "src": "/assets/(.*)",
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable"
+      }
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }
   ],
-  "env": {
-    "VITE_APP_ENV": "production"
+  "build": {
+    "env": {
+      "NODE_ENV": "production"
+    }
   }
 }
