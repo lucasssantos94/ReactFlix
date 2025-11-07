@@ -22,10 +22,10 @@ export const MediaSearchedCard = ({ media }: IMediaSearchedCardProps) => {
 
   return (
     <Link to={mediaLink}>
-      <div className='group  backdrop-blur-sm rounded-2xl border border-gray-700 hover:border-red-500 transition-all duration-500 hover:shadow-2xl hover:shadow-red-500/10 overflow-hidden hover:-translate-y-2'>
+      <div className='group  backdrop-blur-sm rounded-2xl border border-gray-700 hover:border-red-500 transition-all duration-500 hover:shadow-lg hover:shadow-red-500/10 overflow-hidden hover:-translate-y-2'>
         <div className='flex gap-6 p-6'>
           {/* Poster Image */}
-          <div className='relative w-24 min-w-24 h-36 rounded-xl overflow-hidden shadow-2xl group-hover:shadow-cyan-500/20 transition-shadow duration-500'>
+          <div className='relative w-24 min-w-24 h-36 rounded-xl overflow-hidden shadow-2xl group-hover:shadow-red-500/20 transition-shadow duration-500'>
             <MediaImage
               src={getImageUrl({
                 path: media.poster_path,
@@ -97,7 +97,7 @@ export const MediaSearchedCard = ({ media }: IMediaSearchedCardProps) => {
         </div>
 
         {/* Gradient Border Bottom */}
-        <div className='h-1 bg-linear-to-r from-cyan-500/0 via-red-400/50 to-red-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500'></div>
+        <div className='h-1 bg-linear-to-r from-red-500/0 via-red-400/50 to-red-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500'></div>
       </div>
     </Link>
   )

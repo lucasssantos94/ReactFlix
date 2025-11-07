@@ -12,7 +12,7 @@ const Search = () => {
   )
 
   const itemsSearch = [
-    { name: 'Filmes', data: movies, path: '' },
+    { name: 'Filmes', data: movies, path: 'movies' },
     { name: 'Séries', data: series, path: 'series' },
     { name: 'Pessoas', data: people, path: 'people' },
   ]

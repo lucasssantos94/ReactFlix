@@ -1,5 +1,5 @@
 import { lazy } from 'react'
-import { createBrowserRouter } from 'react-router'
+import { createBrowserRouter, Navigate } from 'react-router'
 
 import App from '@/App'
 import Home from '@/views/pages/Home'
@@ -55,12 +55,12 @@ export const router = createBrowserRouter([
         element: <PersonDetails />,
       },
       {
-        path: '/search/:search/',
+        path: '/search/:search',
         element: <Search />,
         children: [
           {
             index: true,
-            element: <MovieSearch />,
+            element: <Navigate to='movies' replace />,
           },
           {
             path: 'movies',
