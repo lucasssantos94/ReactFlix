@@ -63,15 +63,15 @@ export const router = createBrowserRouter([
             element: <MovieSearch />,
           },
           {
-            path: '/search/:search/movies',
+            path: 'movies',
             element: <MovieSearch />,
           },
           {
-            path: '/search/:search/series',
+            path: 'series',
             element: <SerieSearch />,
           },
           {
-            path: '/search/:search/people',
+            path: 'people',
             element: <PeopleSearch />,
           },
         ],

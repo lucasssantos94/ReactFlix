@@ -12,34 +12,35 @@ const Search = () => {
   )
 
   const itemsSearch = [
-    { name: 'Filmes', data: movies, path: `/search/${search}/movies` },
-    { name: 'Series', data: series, path: `/search/${search}/series` },
-    { name: 'Pessoas', data: people, path: `/search/${search}/people` },
+    { name: 'Filmes', data: movies, path: '' },
+    { name: 'Séries', data: series, path: 'series' },
+    { name: 'Pessoas', data: people, path: 'people' },
   ]
 
   if (isLoading) return <LoadingSpinner />
   if (error) return <div>Erro ao realizar pesquisa</div>
   if (!searchData) return <div>Sem resultados</div>
 
-  console.log(searchData)
   return (
     <section className='container mx-auto grid grid-cols-1 md:grid-cols-[25%_75%] gap-8 p-6'>
       <div className='col-span-full'>
         <SearchForm />
       </div>
+
       <div className='h-[200px] min-h-[200px] rounded-lg border border-gray-700'>
         <div className='bg-gray-700/50 rounded-t-lg p-4 border-b border-gray-700'>
           <h2>Resultados para {search}</h2>
         </div>
-        <div className=''>
+        <div>
           {itemsSearch.map(item => (
             <NavLink
               key={item.name}
               className={({ isActive }) => `
                 ${
                   isActive ? 'bg-gray-700/50 font-bold' : ''
-                } flex justify-between items-center hover:bg-gray-700/50 px-4 py-2`}
-              to={item.path}
+                } flex justify-between items-center hover:bg-gray-700/50 px-4 py-2 transition-colors duration-200`}
+              to={item.path} // Caminho relativo
+              end={false}
             >
               <h3>{item.name}</h3>
               <span>{item.data.length}</span>
@@ -48,7 +49,7 @@ const Search = () => {
         </div>
       </div>
 
-      <div>
+      <div className='min-h-[400px]'>
         <Suspense fallback={<Loading />}>
           <Outlet />
         </Suspense>
