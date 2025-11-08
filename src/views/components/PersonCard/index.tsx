@@ -8,9 +8,14 @@ interface IPersonCardProps {
 }
 
 export const PersonCard = ({ person }: IPersonCardProps) => {
-  const personLink = `/person/${person.id}`
+  const personLink = `/people/${person.id}`
   const knownFor = person.known_for || []
-  const topWorks = knownFor.slice(0, 3).map(item => item.title || item.name)
+  const topWorks: Array<{ id: number; title: string }> = knownFor
+    .slice(0, 3)
+    .map(item => ({
+      id: item.id,
+      title: item.title || item.name || 'Unknown',
+    }))
 
   return (
     <Link to={personLink} className='block w-full max-w-[315px]'>
@@ -27,31 +32,26 @@ export const PersonCard = ({ person }: IPersonCardProps) => {
             containerClassName='w-full h-full'
           />
 
-          {/* Gradient overlay on hover */}
           <div className='absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500' />
         </div>
 
-        {/* Content Container */}
         <div className='p-4 space-y-2'>
-          {/* Name */}
-          <h3 className='font-semibold text-gray-900 dark:text-white group-hover:text-red-500 transition-colors duration-300 text-base text-center line-clamp-2 min-h-[2.5rem] flex items-center justify-center'>
+          <h3 className='font-semibold text-gray-900 dark:text-white group-hover:text-red-500 transition-colors duration-300 text-base text-center line-clamp-2 min-h-10 flex items-center justify-center'>
             {person.name}
           </h3>
 
-          {/* Known For Works */}
           <div className='space-y-1'>
-            {topWorks.map((work, index) => (
+            {topWorks.map(work => (
               <p
-                key={index}
+                key={work.id}
                 className='text-sm text-gray-600 dark:text-gray-400 text-center leading-tight line-clamp-1 px-1'
               >
-                {work}
+                {work.title}
               </p>
             ))}
           </div>
         </div>
 
-        {/* Hover indicator */}
         <div className='w-0 group-hover:w-full h-0.5 bg-red-500 transition-all duration-300 mx-auto' />
       </div>
     </Link>

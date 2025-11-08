@@ -9,7 +9,7 @@ interface IPersonSearchedCardProps {
 }
 
 export const PersonSearchedCard = ({ person }: IPersonSearchedCardProps) => {
-  const personLink = `/person/${person.id}`
+  const personLink = `/people/${person.id}`
   const knownFor = person.known_for || []
   const department = person.known_for_department || 'Atuação'
 
