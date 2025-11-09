@@ -33,8 +33,7 @@ export const InfoBanner = () => {
 
   return (
     <div className='w-full md:container md:mx-auto flex flex-col md:flex-row gap-6 p-4 md:p-6 overflow-hidden'>
-      {/* Poster */}
-      <div className='w-full hidden md:block md:w-[300px] max-w-[70%] md:max-w-none mx-auto md:mx-0 aspect-2/3 shrink-0'>
+      <div className='w-full hidden md:block md:w-[300px] max-w-[70%] md:max-w-none mx-auto md:mx-0 aspect-2/3 shrink-0 '>
         <MediaImage
           src={getImageUrl({ path: poster_path, size: 'POSTER_SMALL' })}
           alt={title || 'Capa do filme'}
@@ -44,12 +43,11 @@ export const InfoBanner = () => {
               ? 'rounded-t-2xl'
               : 'rounded-2xl'
           } w-full h-full shadow-lg overflow-hidden`}
-          fallbackMessage='Foto não disponível'
         />
 
         {brazilProvidersFlatrate &&
           'provider_name' in brazilProvidersFlatrate && (
-            <div className='flex items-center justify-center gap-2 bg-gray-900 rounded-b-2xl py-2'>
+            <div className='flex items-center justify-center gap-2  bg-gray-900 rounded-b-2xl py-2 '>
               <img
                 src={getImageUrl({
                   path: brazilProvidersFlatrate.logo_path,
@@ -57,7 +55,7 @@ export const InfoBanner = () => {
                 })}
                 alt={brazilProvidersFlatrate.provider_name}
                 title={brazilProvidersFlatrate.provider_name}
-                className='w-8 h-8 object-contain'
+                className='w-8 h-8 rounded-full'
               />
               <span className='text-white text-sm leading-tight'>
                 <h3 className='text-green-500/90 text-xs'>No Ar</h3>
@@ -67,9 +65,8 @@ export const InfoBanner = () => {
           )}
       </div>
 
-      {/* Conteúdo */}
       <section className='flex-1'>
-        <h1 className='text-2xl sm:text-3xl md:text-5xl font-extrabold mb-2 text-white mt-6'>
+        <h1 className='text-2xl sm:text-3xl md:text-5xl font-extrabold mb-2 text-white mt-6 '>
           {title}
         </h1>
 
@@ -107,7 +104,7 @@ export const InfoBanner = () => {
             <h2 className='text-lg md:text-2xl font-semibold mb-2 text-white'>
               Sinopse
             </h2>
-            <p className='text-gray-200 leading-relaxed text-sm md:text-base overflow-y-auto md:overflow-visible scrollbar-none max-h-[100px] md:max-h-none'>
+            <p className='text-gray-200 leading-relaxed text-sm md:text-base overflow-y-auto  scrollbar-none max-h-[100px] lg:max-h-none'>
               {overview}
             </p>
           </>
