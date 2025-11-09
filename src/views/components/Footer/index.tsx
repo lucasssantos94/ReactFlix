@@ -41,7 +41,7 @@ export const Footer = () => {
             <ul className='space-y-3 text-sm'>
               <li>
                 <a
-                  href='https://github.com/seu-usuario'
+                  href='https://github.com/lucasssantos94'
                   target='_blank'
                   rel='noopener noreferrer'
                   className=' hover:text-red-500 hover:font-semibold transition-colors flex items-center gap-2'
@@ -58,7 +58,7 @@ export const Footer = () => {
               </li>
               <li>
                 <a
-                  href='https://linkedin.com/in/seu-perfil'
+                  href='https://www.linkedin.com/in/lucas-silva-santos-439815a2/'
                   target='_blank'
                   rel='noopener noreferrer'
                   className=' hover:text-red-500 hover:font-semibold transition-colors flex items-center gap-2'
@@ -73,20 +73,10 @@ export const Footer = () => {
                   LinkedIn
                 </a>
               </li>
+
               <li>
                 <a
-                  href='https://portfolio-seu-site.com'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  className=' hover:text-red-500 hover:font-semibold transition-colors flex items-center gap-2'
-                >
-                  <Code className='h-4 w-4' />
-                  Portfolio
-                </a>
-              </li>
-              <li>
-                <a
-                  href='mailto:seu-email@example.com'
+                  href='mailto:lucas.dev94@outlook.com'
                   className=' hover:text-red-500 hover:font-semibold transition-colors flex items-center gap-2'
                 >
                   <svg
