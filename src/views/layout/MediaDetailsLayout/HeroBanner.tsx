@@ -16,7 +16,6 @@ export const HeroBanner = ({ children }: HeroBannerProps) => {
   }
   const { backdrop_path } = mediaInfo
 
-  // ✅ Verifica se existe backdrop_path
   if (!backdrop_path) {
     return (
       <header className='w-full h-[80vh] md:h-[70vh] flex items-center bg-gray-900'>

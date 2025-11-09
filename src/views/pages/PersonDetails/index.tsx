@@ -144,15 +144,12 @@ const PersonDetails = () => {
     }
   }
 
-  console.log(processPersonData().knownFor)
-
   const processedData = processPersonData()
 
   return (
     <>
       <title>{details.name}</title>
       <div className='max-w-7xl mx-auto px-4 py-8'>
-        {/* Header com foto e informações básicas */}
         <div className='grid grid-cols-1 lg:grid-cols-4 gap-8 mb-12'>
           <div className='lg:col-span-1'>
             <div className='rounded-2xl overflow-hidden shadow-lg bg-gray-200 dark:bg-gray-700 aspect-3/4'>
@@ -167,7 +164,6 @@ const PersonDetails = () => {
             </div>
           </div>
 
-          {/* Informações principais */}
           <div className='lg:col-span-3'>
             <h1 className='text-5xl font-bold text-gray-900 dark:text-white mb-4'>
               {details.name}
@@ -183,7 +179,6 @@ const PersonDetails = () => {
               </div>
             )}
 
-            {/* Também conhecido como */}
             {details.also_known_as && details.also_known_as.length > 0 && (
               <div className='mb-6'>
                 <h3 className='text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-2'>
@@ -202,7 +197,6 @@ const PersonDetails = () => {
               </div>
             )}
 
-            {/* Informações pessoais */}
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mb-8'>
               <div className='space-y-3'>
                 <div>
@@ -229,7 +223,6 @@ const PersonDetails = () => {
               </div>
 
               <div className='space-y-3'>
-                {/* Data de nascimento */}
                 {details.birthday && (
                   <div>
                     <h3 className='text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide'>
@@ -248,7 +241,6 @@ const PersonDetails = () => {
                   </div>
                 )}
 
-                {/* Data de falecimento */}
                 {details.deathday && (
                   <div>
                     <h3 className='text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide'>
@@ -272,8 +264,6 @@ const PersonDetails = () => {
                 )}
               </div>
             </div>
-
-            {/* Estatística de créditos */}
           </div>
           <div className='bg-linear-to-r from-red-400 to-red-500 rounded-2xl p-6 text-white text-center col-span-full'>
             <h3 className='text-lg font-semibold mb-2'>Creditado(a) em</h3>
@@ -284,7 +274,6 @@ const PersonDetails = () => {
           </div>
         </div>
 
-        {/* Biografia */}
         {details.biography && (
           <section className='mb-12'>
             <div className='flex items-center justify-between mb-6'>
@@ -319,7 +308,6 @@ const PersonDetails = () => {
           </section>
         )}
 
-        {/* Conhecido por - Grid de posters */}
         <section className='mb-12'>
           <h2 className='text-3xl font-bold text-gray-900 dark:text-white mb-8'>
             Conhecido(a) por
@@ -333,7 +321,6 @@ const PersonDetails = () => {
           />
         </section>
 
-        {/* Trabalhos recentes e futuros */}
         {processedData.upcomingCredits.length > 0 && (
           <section className='mb-12'>
             <h2 className='text-3xl font-bold text-gray-900 dark:text-white mb-8'>
@@ -367,7 +354,6 @@ const PersonDetails = () => {
           </section>
         )}
 
-        {/* Atuação - Lista de trabalhos */}
         <section className='mb-12'>
           <div className='flex items-center justify-between mb-8'>
             <h2 className='text-3xl font-bold text-gray-900 dark:text-white'>

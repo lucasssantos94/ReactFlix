@@ -93,6 +93,7 @@ export const Header = () => {
             <SearchBtn />
 
             <Button
+              aria-label='Abrir menu'
               variant='ghost'
               onClick={() => setMenuIsOpen(!menuIsOpen)}
               className='border cursor-pointer'
@@ -128,6 +129,7 @@ export const Header = () => {
                   <div className='space-x-2'>
                     <ThemeSwitcher />
                     <Button
+                      aria-label='Fechar menu'
                       variant='ghost'
                       size='icon'
                       className='border'

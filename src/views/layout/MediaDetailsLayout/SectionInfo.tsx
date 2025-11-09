@@ -15,7 +15,6 @@ export const SectionInfo = () => {
 
   return (
     <section className='md:pr-14 md:border-r-4 border-border pt-4 px-2'>
-      {/* Elenco */}
       {cast?.length ? (
         <div className=''>
           <h2 className='text-3xl font-bold mb-4'>Elenco principal</h2>
@@ -42,7 +41,7 @@ export const SectionInfo = () => {
               to={
                 type === 'movie' ? `/movies/${id}/cast` : `/series/${id}/cast`
               }
-              className='flex items-center '
+              className='flex items-center hover:text-red-500 transition-colors duration-300'
             >
               <h4 className='font-semibold text-lg'>
                 Elenco e equipe técnica completos
@@ -54,7 +53,6 @@ export const SectionInfo = () => {
         <p className='text-muted-foreground'>Sem elenco listado.</p>
       )}
 
-      {/* Avaliações */}
       <h2 className='text-3xl font-bold mb-6 mt-10'>Avaliações</h2>
       {reviews && reviews?.length > 0 ? (
         <div>
@@ -83,7 +81,6 @@ export const SectionInfo = () => {
         </div>
       )}
 
-      {/* Recomendações */}
       {recommendations && recommendations?.length > 0 && (
         <div className='mt-10'>
           <h2 className='text-3xl font-bold mb-6'>Recomendações</h2>

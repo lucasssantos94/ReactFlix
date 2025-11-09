@@ -39,7 +39,7 @@ const Search = () => {
                 ${
                   isActive ? 'bg-gray-700/50 font-bold' : ''
                 } flex justify-between items-center hover:bg-gray-700/50 px-4 py-2 transition-colors duration-200`}
-              to={item.path} // Caminho relativo
+              to={item.path}
               end={false}
             >
               <h3>{item.name}</h3>

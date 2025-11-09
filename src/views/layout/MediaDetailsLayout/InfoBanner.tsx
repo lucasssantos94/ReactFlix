@@ -117,7 +117,6 @@ export const InfoBanner = () => {
           </p>
         )}
 
-        {/* Diretor / Roteiristas / Criador */}
         <div className='flex flex-col sm:flex-row flex-wrap items-start gap-4 mt-6 md:mt-8 text-white'>
           {type === 'movie' && (
             <>

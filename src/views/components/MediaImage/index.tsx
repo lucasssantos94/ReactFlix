@@ -18,7 +18,7 @@ interface MediaImageProps {
 export const MediaImage = ({
   src,
   alt,
-  size = 'W500',
+  size = 'POSTER_SMALL',
   className = '',
   containerClassName = '',
   onLoad,

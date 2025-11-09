@@ -16,10 +16,12 @@ export const TrailerModal = () => {
   return (
     <Dialog open={isOpen} onOpenChange={closeModal}>
       <DialogContent className='min-w-full md:min-w-[70%] min-h-[300px] p-0'>
-        <DialogTitle className='text-white text-lg font-semibold m-0 p-4'>
+        <DialogTitle className='text-white text-lg font-semibold m-0 p-4 sr-only'>
           {trailer?.name || 'Trailer'}
         </DialogTitle>
-        <DialogDescription></DialogDescription>
+        <DialogDescription className='sr-only'>
+          Trailer do filme
+        </DialogDescription>
 
         {trailer && (
           <div className='w-full h-full'>

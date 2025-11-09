@@ -88,7 +88,6 @@ export const CastPage = ({ type, id }: CastPageProps) => {
               )}
             </div>
 
-            {/* Equipe Técnica */}
             <div>
               <h2 className='text-2xl font-semibold text-gray-900 dark:text-white mb-6 pb-2 border-b border-gray-200 dark:border-gray-700'>
                 Equipe Técnica
@@ -116,7 +115,6 @@ export const CastPage = ({ type, id }: CastPageProps) => {
           </>
         )}
 
-        {/* Empty State */}
         {!isLoading && (!castData || castData.cast.length === 0) && (
           <div className='text-center py-12'>
             <div className='text-gray-400 dark:text-gray-500 text-6xl mb-4'>
