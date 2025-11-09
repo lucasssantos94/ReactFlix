@@ -3,9 +3,10 @@ import { Link, useParams } from 'react-router'
 import { useGetPersonDetails } from '@/app/hooks/people/useGetPersonDetails'
 import { getImageUrl } from '@/app/utils/getImageUrl'
 import { Carousel } from '@/views/components/Carousel'
+import { CreditCard } from '@/views/components/CreditCard'
 import { LoadingSpinner } from '@/views/components/LoadingSpinner'
-import { MediaCard } from '@/views/components/MediaCard'
 import { MediaImage } from '@/views/components/MediaImage'
+import { Badge } from '@/views/components/ui/badge'
 import { Button } from '@/views/components/ui/button'
 
 const PersonDetails = () => {
@@ -32,7 +33,6 @@ const PersonDetails = () => {
 
   const { details, credits } = personDetails
 
-  // Função simples para calcular idade
   const calculateAge = (birthDate: Date, deathDate: Date | null): number => {
     const endDate = deathDate || new Date()
     let age = endDate.getFullYear() - birthDate.getFullYear()
@@ -48,7 +48,6 @@ const PersonDetails = () => {
     return age
   }
 
-  // Processar informações de data
   const getDateInfo = () => {
     if (!details.birthday) return null
 
@@ -72,9 +71,7 @@ const PersonDetails = () => {
 
   const dateInfo = getDateInfo()
 
-  // Processar dados para o layout
   const processPersonData = () => {
-    // Filmes/séries mais conhecidos (ordenados por data mais recente)
     const knownFor = credits.cast
       .filter(item => item.poster_path)
       .sort((a, b) => {
@@ -87,12 +84,11 @@ const PersonDetails = () => {
         id: item.id,
         title: item.title || item.name || 'Título não disponível',
         poster_path: item.poster_path,
+        media_type: item.media_type,
       }))
 
-    // Total de créditos
     const totalCredits = credits.cast.length + credits.crew.length
 
-    // Créditos de atuação (únicos por título)
     const actingCredits = credits.cast
       .filter(credit => credit.character)
       .reduce(
@@ -101,6 +97,7 @@ const PersonDetails = () => {
           const existing = acc.find(item => item.title === title)
           if (!existing && title) {
             acc.push({
+              media_type: credit.media_type,
               id: credit.id,
               title: title,
               character: credit.character,
@@ -117,10 +114,11 @@ const PersonDetails = () => {
           title: string
           character: string
           year: string
+          media_type: 'movie' | 'tv'
         }>
       )
+      .sort((a, b) => b.year.localeCompare(a.year))
 
-    // Trabalhos futuros
     const upcomingCredits = credits.cast
       .filter(credit => {
         const releaseDate = credit.release_date || credit.first_air_date
@@ -131,6 +129,7 @@ const PersonDetails = () => {
         id: credit.id,
         title: credit.title || credit.name || 'Título não disponível',
         character: credit.character,
+        media_type: credit.media_type,
         year:
           credit.release_date?.split('-')[0] ||
           credit.first_air_date?.split('-')[0] ||
@@ -144,6 +143,8 @@ const PersonDetails = () => {
       upcomingCredits,
     }
   }
+
+  console.log(processPersonData().knownFor)
 
   const processedData = processPersonData()
 
@@ -273,7 +274,7 @@ const PersonDetails = () => {
 
           {/* Estatística de créditos */}
         </div>
-        <div className='bg-gradient-to-r from-red-400 to-red-500 rounded-2xl p-6 text-white text-center col-span-full'>
+        <div className='bg-linear-to-r from-red-400 to-red-500 rounded-2xl p-6 text-white text-center col-span-full'>
           <h3 className='text-lg font-semibold mb-2'>Creditado(a) em</h3>
           <p className='text-5xl font-bold mb-1'>
             {processedData.totalCredits}
@@ -282,7 +283,6 @@ const PersonDetails = () => {
         </div>
       </div>
 
-      {/* Resto do código permanece igual */}
       {/* Biografia */}
       {details.biography && (
         <section className='mb-12'>
@@ -294,8 +294,8 @@ const PersonDetails = () => {
 
           <div className='prose dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 leading-relaxed'>
             {showFullBiography ? (
-              details.biography.split('\n\n').map((paragraph, index) => (
-                <p key={index} className='mb-4 text-lg'>
+              details.biography.split('\n\n').map(paragraph => (
+                <p key={Math.random()} className='mb-4 text-lg'>
                   {paragraph}
                 </p>
               ))
@@ -328,46 +328,8 @@ const PersonDetails = () => {
           loop={false}
           data={processedData.knownFor}
           keyExtractor={item => item.id}
-          renderItem={item => <MediaCard media={item} scale={false} />}
+          renderItem={item => <CreditCard credit={item} />}
         />
-      </section>
-
-      {/* Atuação - Lista de trabalhos */}
-      <section className='mb-12'>
-        <div className='flex items-center justify-between mb-8'>
-          <h2 className='text-3xl font-bold text-gray-900 dark:text-white'>
-            Atuação
-          </h2>
-          <span className='text-sm text-gray-500 dark:text-gray-400'>
-            {processedData.actingCredits.length} trabalhos
-          </span>
-        </div>
-
-        <div className='space-y-4'>
-          {processedData.actingCredits.map((credit, index) => (
-            <Link
-              to={`/movies/${credit.id}`}
-              key={`${credit.id}-${index}`}
-              className='flex items-center p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-all duration-300 group'
-            >
-              <div className='flex-1 min-w-0'>
-                <h3 className='text-lg font-semibold text-gray-900 dark:text-white transition-colors line-clamp-1'>
-                  {credit.title}
-                </h3>
-                <p className='text-gray-600 dark:text-gray-400 mt-1 line-clamp-1'>
-                  {credit.character}
-                </p>
-              </div>
-
-              <div className='flex items-center space-x-4 ml-6'>
-                <span className='text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap'>
-                  {credit.year}
-                </span>
-                <div className='w-2 h-2 bg-gray-300 dark:bg-gray-600 rounded-full'></div>
-              </div>
-            </Link>
-          ))}
-        </div>
       </section>
 
       {/* Trabalhos recentes e futuros */}
@@ -379,7 +341,8 @@ const PersonDetails = () => {
 
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
             {processedData.upcomingCredits.slice(0, 3).map(credit => (
-              <div
+              <Link
+                to={`/movies/${credit.id}`}
                 key={credit.id}
                 className='bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700'
               >
@@ -397,11 +360,59 @@ const PersonDetails = () => {
                     Em breve
                   </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </section>
       )}
+
+      {/* Atuação - Lista de trabalhos */}
+      <section className='mb-12'>
+        <div className='flex items-center justify-between mb-8'>
+          <h2 className='text-3xl font-bold text-gray-900 dark:text-white'>
+            Atuação
+          </h2>
+          <span className='text-sm text-gray-500 dark:text-gray-400'>
+            {processedData.actingCredits.length} trabalhos
+          </span>
+        </div>
+
+        <div className='space-y-4'>
+          {processedData.actingCredits.map((credit, index) => (
+            <Link
+              to={
+                credit.media_type === 'movie'
+                  ? `/movies/${credit.id}`
+                  : `/series/${credit.id}`
+              }
+              key={`${credit.id}-${index}`}
+              className='flex items-center p-4 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 transition-all duration-300 group'
+            >
+              <div className='flex-1 min-w-0'>
+                <div className='flex items-center gap-2'>
+                  <h3 className='text-lg font-semibold text-gray-900 dark:text-white transition-colors line-clamp-1'>
+                    {credit.title}
+                  </h3>
+                  <Badge>
+                    {credit.media_type === 'movie' ? 'Filme' : 'Série'}
+                  </Badge>
+                </div>
+
+                <p className='text-gray-600 dark:text-gray-400 mt-1 line-clamp-1'>
+                  {credit.character}
+                </p>
+              </div>
+
+              <div className='flex items-center space-x-4 ml-6'>
+                <span className='text-sm text-gray-500 dark:text-gray-400 whitespace-nowrap'>
+                  {credit.year}
+                </span>
+                <div className='w-2 h-2 bg-gray-300 dark:bg-gray-600 rounded-full'></div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
     </div>
   )
 }
