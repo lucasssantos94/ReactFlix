@@ -18,7 +18,7 @@ export const SectionInfo = () => {
       {/* Elenco */}
       {cast?.length ? (
         <div className=''>
-          <h2 className='text-3xl font-bold md:mb-4'>Elenco principal</h2>
+          <h2 className='text-3xl font-bold mb-4'>Elenco principal</h2>
           <Carousel
             loop={false}
             data={cast.slice(0, 9)}
