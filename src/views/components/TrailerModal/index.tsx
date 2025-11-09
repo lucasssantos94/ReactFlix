@@ -1,5 +1,8 @@
+// TrailerModal.tsx
 import { useGetMediaTrailer } from '@app/hooks/media/useGetMediaTrailer'
 import { useTrailerStore } from '@app/stores/useTrailerStore'
+import { Loading } from '../Loading'
+
 import {
   Dialog,
   DialogContent,
@@ -8,8 +11,12 @@ import {
 } from '../ui/dialog'
 
 export const TrailerModal = () => {
-  const { isOpen, mediaId, closeModal } = useTrailerStore()
-  const { trailer } = useGetMediaTrailer(mediaId || 0)
+  const { isOpen, mediaId, mediaType, closeModal } = useTrailerStore()
+
+  const { trailer, isLoading } = useGetMediaTrailer(
+    mediaId || undefined,
+    mediaType || 'movie'
+  )
 
   if (!mediaId) return null
 
@@ -23,7 +30,13 @@ export const TrailerModal = () => {
           Trailer do filme
         </DialogDescription>
 
-        {trailer && (
+        {isLoading && (
+          <div className='flex items-center justify-center min-h-[300px]'>
+            <Loading />
+          </div>
+        )}
+
+        {!isLoading && trailer && (
           <div className='w-full h-full'>
             <iframe
               src={`https://www.youtube-nocookie.com/embed/${trailer.key}?autoplay=1&rel=0&modestbranding=1&fs=1`}
@@ -32,6 +45,12 @@ export const TrailerModal = () => {
               style={{ width: '100%', height: '70vh' }}
               allowFullScreen
             />
+          </div>
+        )}
+
+        {!isLoading && !trailer && (
+          <div className='flex items-center justify-center min-h-[300px] text-white'>
+            <p>Trailer não disponível</p>
           </div>
         )}
       </DialogContent>

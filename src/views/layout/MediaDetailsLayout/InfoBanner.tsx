@@ -89,7 +89,7 @@ export const InfoBanner = () => {
 
         <Button
           size='sm'
-          onClick={() => openModal(id || 0)}
+          onClick={() => openModal(id, type)}
           className='bg-white text-black hover:bg-white/90 font-bold gap-2 cursor-pointer mb-4 w-full sm:w-auto'
         >
           <Play className='h-4 w-4 md:h-5 md:w-5 fill-current' />

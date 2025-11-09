@@ -1,26 +1,19 @@
+// useTrailerStore.ts
 import { create } from 'zustand'
 
-type TrailerState = {
+interface TrailerStore {
   isOpen: boolean
   mediaId: number | null
-}
-
-type Actions = {
-  openModal: (id: number) => void
+  mediaType: 'movie' | 'tv' | null
+  openModal: (mediaId: number, mediaType?: 'movie' | 'tv') => void
   closeModal: () => void
 }
 
-export const useTrailerStore = create<TrailerState & Actions>(set => ({
+export const useTrailerStore = create<TrailerStore>(set => ({
   isOpen: false,
   mediaId: null,
-  openModal: (id: number) =>
-    set(() => ({
-      isOpen: true,
-      mediaId: id,
-    })),
-  closeModal: () =>
-    set(() => ({
-      isOpen: false,
-      mediaId: null,
-    })),
+  mediaType: null,
+  openModal: (mediaId, mediaType = 'movie') =>
+    set({ isOpen: true, mediaId, mediaType }),
+  closeModal: () => set({ isOpen: false, mediaId: null, mediaType: null }),
 }))

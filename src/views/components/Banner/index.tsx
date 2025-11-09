@@ -131,7 +131,7 @@ const Banner = ({ data = [] }: BannerProps) => {
                 <div className='flex gap-3'>
                   <Button
                     size='lg'
-                    onClick={() => openModal(movie.id)}
+                    onClick={() => openModal(movie.id, 'movie')}
                     className='bg-white text-black hover:bg-white/90 font-bold gap-2 cursor-pointer'
                   >
                     <Play className='h-4 w-4 md:h-5 md:w-5 fill-current' />

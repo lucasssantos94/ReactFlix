@@ -1,16 +1,19 @@
-import { getMediaTrailer } from '@app/services/media/getMediaTrailer'
-import type { TMDBVideo } from '@app/types/TMDBVideo'
 import { useQuery } from '@tanstack/react-query'
+import { getMediaTrailer } from '@/app/services/media/getMediaTrailer'
+import type { TMDBVideo } from '@/app/types/TMDBVideo'
 
-export function useGetMediaTrailer(id?: number) {
+export function useGetMediaTrailer(id?: number, mediaType?: 'movie' | 'tv') {
   const { data, isLoading, refetch, isFetching, error } =
     useQuery<TMDBVideo | null>({
-      queryKey: ['movie-trailer', id],
+      queryKey: ['media-trailer', id, mediaType],
       queryFn: () => {
-        if (!id) throw new Error('ID do filme é obrigatório')
-        return getMediaTrailer(id)
+        if (!id || !mediaType) {
+          console.warn('ID ou tipo de mídia não fornecidos')
+          return null
+        }
+        return getMediaTrailer(id, mediaType)
       },
-      enabled: !!id,
+      enabled: !!id && !!mediaType,
     })
 
   return {
