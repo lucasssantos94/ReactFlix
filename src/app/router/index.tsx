@@ -8,9 +8,11 @@ const ErrorPage = lazy(() => import('@/views/pages/Error'))
 
 const Movies = lazy(() => import('@/views/pages/Movies'))
 const MovieDetails = lazy(() => import('@/views/pages/MovieDetails'))
+const MovieCast = lazy(() => import('@/views/pages/MovieCast'))
 
 const Series = lazy(() => import('@/views/pages/Series'))
 const SerieDetails = lazy(() => import('@/views/pages/SerieDetails'))
+const SerieCast = lazy(() => import('@/views/pages/SerieCast'))
 
 const People = lazy(() => import('@/views/pages/People'))
 const PersonDetails = lazy(() => import('@/views/pages/PersonDetails'))
@@ -39,12 +41,21 @@ export const router = createBrowserRouter([
         element: <MovieDetails />,
       },
       {
+        path: '/movies/:movieId/cast',
+        element: <MovieCast />,
+      },
+      {
         path: '/series',
         element: <Series />,
       },
       {
         path: '/series/:serieId',
         element: <SerieDetails />,
+      },
+
+      {
+        path: '/series/:serieId/cast',
+        element: <SerieCast />,
       },
       {
         path: '/people',

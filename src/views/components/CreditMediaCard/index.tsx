@@ -11,7 +11,7 @@ interface ICreditCardProps {
   }
 }
 
-export const CreditCard = ({ credit }: ICreditCardProps) => {
+export const CreditMediaCard = ({ credit }: ICreditCardProps) => {
   return (
     <Link
       to={

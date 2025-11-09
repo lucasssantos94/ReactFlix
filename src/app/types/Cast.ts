@@ -4,3 +4,15 @@ export interface ICast {
   character: string
   profile_path: string | null
 }
+
+export interface ICrew {
+  id: number
+  name: string
+  job: string
+  profile_path: string | null
+}
+
+export interface IResponseCast {
+  cast: ICast[]
+  crew: ICrew[]
+}
