@@ -21,6 +21,8 @@ const Search = lazy(() => import('@/views/pages/Search'))
 const MovieSearch = lazy(() => import('@/views/pages/Search/MovieSearch'))
 const SerieSearch = lazy(() => import('@/views/pages/Search/SerieSearch'))
 const PeopleSearch = lazy(() => import('@/views/pages/Search/PeopleSearch'))
+const MoviesByKeyword = lazy(() => import('@/views/pages/MoviesByKeyword'))
+const SeriesByKeyword = lazy(() => import('@views/pages/SeriesByKeyword'))
 
 export const router = createBrowserRouter([
   {
@@ -86,6 +88,14 @@ export const router = createBrowserRouter([
             element: <PeopleSearch />,
           },
         ],
+      },
+      {
+        path: '/keyword/:keyword/movies',
+        element: <MoviesByKeyword />,
+      },
+      {
+        path: '/keyword/:keyword/series',
+        element: <SeriesByKeyword />,
       },
     ],
   },

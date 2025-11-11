@@ -2,6 +2,7 @@ import { useMediaInfo } from '@app/hooks/media/useMediaDetails'
 import { formatCurrency } from '@app/utils/formatCurrency'
 import { getOriginalLanguage } from '@app/utils/getOriginalLanguage'
 import { translateStatus } from '@app/utils/translateStatus'
+import { Link } from 'react-router'
 import { ExternalIds } from '@/views/components/ExternalIds'
 import { LoadingSpinner } from '@/views/components/LoadingSpinner'
 import { Badge } from '@/views/components/ui/badge'
@@ -68,9 +69,16 @@ export const SideBar = () => {
         <div className='flex flex-wrap gap-2'>
           {keywords?.length > 0 ? (
             keywords.map((keyword: { id: number; name: string }) => (
-              <Badge key={keyword.id} className='text-white bg-gray-700'>
-                {keyword.name}
-              </Badge>
+              <Link
+                key={keyword.id}
+                to={
+                  type === 'movie'
+                    ? `/keyword/${keyword.id}/movies`
+                    : `/keyword/${keyword.id}/series`
+                }
+              >
+                <Badge className='text-white bg-gray-700'>{keyword.name}</Badge>
+              </Link>
             ))
           ) : (
             <p className='text-muted-foreground'>Nenhuma palavra-chave.</p>
