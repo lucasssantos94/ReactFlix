@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 
 export function useGetMovieCast(mediaId: string) {
   const { data, isLoading, error } = useQuery({
-    queryKey: ['cast', mediaId],
+    queryKey: ['movie-cast', mediaId],
     queryFn: () => getCastMovie(mediaId),
   })
 
@@ -16,7 +16,7 @@ export function useGetMovieCast(mediaId: string) {
 
 export function useGetSerieCast(mediaId: string) {
   const { data, isLoading, error } = useQuery({
-    queryKey: ['cast', mediaId],
+    queryKey: ['serie-cast', mediaId],
     queryFn: () => getCastSerie(mediaId),
   })
 
