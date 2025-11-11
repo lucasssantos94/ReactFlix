@@ -1,32 +1,16 @@
-import { useGetMovieCast, useGetSerieCast } from '@app/hooks/media/useGetCast'
 import { CreditPersonCard } from '@views/components/CreditPersonCard'
 import { Skeleton } from '@views/components/ui/skeleton'
-
+import type { ICredits } from '@/app/types/MediaBase'
 import { ContainerGrid } from '@/views/components/ContainerGrid'
 
 interface CastPageProps {
-  type: 'movie' | 'serie'
-  id: string
+  castData: ICredits | null
+  isLoading: boolean
+  isError: boolean
 }
 
-export const CastPage = ({ type, id }: CastPageProps) => {
-  const {
-    castMovie,
-    isLoading: isLoadingMovie,
-    error: errorMovie,
-  } = useGetMovieCast(id || '')
-
-  const {
-    castSerie,
-    isLoading: isLoadingSerie,
-    error: errorSerie,
-  } = useGetSerieCast(id || '')
-
-  const isLoading = type === 'movie' ? isLoadingMovie : isLoadingSerie
-  const error = type === 'movie' ? errorMovie : errorSerie
-  const castData = type === 'movie' ? castMovie : castSerie
-
-  if (error || !castData) {
+export const CastPage = ({ isLoading, isError, castData }: CastPageProps) => {
+  if (isError) {
     return <div>Erro ao carregar elenco</div>
   }
 
@@ -90,6 +74,7 @@ export const CastPage = ({ type, id }: CastPageProps) => {
                 <ContainerGrid>
                   {castData.crew.map(person => (
                     <CreditPersonCard
+                      key={person.id + person.job}
                       credit={{
                         id: person.id,
                         name: person.name,
