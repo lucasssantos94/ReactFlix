@@ -56,7 +56,7 @@ export const KeywordPage = ({ keywordId, mediaType }: IKeywordPageProps) => {
   return (
     <>
       <div className='bg-gray-800'>
-        <div className='container mx-auto py-6 flex items-center justify-between'>
+        <div className='container mx-auto py-6 md:px-4 flex items-center justify-between'>
           <h2 className='font-bold text-2xl'>{keywordData?.name}</h2>
           <h2 className='font-bold text-2xl'>
             {totalResults} {mediaType === 'movie' ? 'Filmes' : 'Séries'}
@@ -64,7 +64,7 @@ export const KeywordPage = ({ keywordId, mediaType }: IKeywordPageProps) => {
         </div>
       </div>
 
-      <section className='container mx-auto mt-8'>
+      <section className='container mx-auto md:px-4 mt-8'>
         <div className='flex flex-col gap-4'>
           {mediaList.map(media => (
             <MediaSearchedCard key={media.id} media={media} />

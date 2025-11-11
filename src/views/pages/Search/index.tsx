@@ -22,7 +22,7 @@ const Search = () => {
   if (!searchData) return <div>Sem resultados</div>
 
   return (
-    <section className='container mx-auto grid grid-cols-1 md:grid-cols-[25%_75%] gap-8 p-6'>
+    <section className='container mx-auto grid grid-cols-1 md:grid-cols-[25%_75%] gap-8 p-6 md:px-12'>
       <div className='col-span-full'>
         <SearchForm />
       </div>
