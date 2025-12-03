@@ -11,7 +11,7 @@ export const Footer = () => {
           {/* Brand & API Attribution */}
           <div className='space-y-4'>
             <div className='flex items-center gap-3'>
-              <Logo size='xl' />
+              <Logo size='md' />
             </div>
 
             <p className=' text-sm leading-relaxed'>
